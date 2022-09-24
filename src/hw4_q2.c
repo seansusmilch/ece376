@@ -61,19 +61,19 @@ void main(void){
 
     while(1) {
         if(RB3 == 1){
-            while(RB3 == 1){}
+            while(RB3 == 1);
             A = A + 1;
         }
         if(RB2 == 1){
-            while(RB2 == 1){}
+            while(RB2 == 1);
             B = B + 1;
         }
         if(RB1 == 1){
-            while(RB1 == 1){}
+            while(RB1 == 1);
             C = C + 1;
         }
         if(RB0 == 1){
-            while(RB0 == 1){}
+            while(RB0 == 1);
             D = D + 1;
         }
 
