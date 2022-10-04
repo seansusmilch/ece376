@@ -6,7 +6,7 @@
         {
             "label": "Compile The C",
             "type": "shell",
-            "command": "& ./tools/build.ps1 ${fileBasenameNoExtension}",
+            "command": "& ./tools/build.ps1 '${file}'",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
