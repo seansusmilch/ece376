@@ -1,12 +1,12 @@
 // Global Variables
-const unsigned char MSG[16] = "Combo Lock      ";
+const unsigned char MSG[21] = "Combo Lock      s";
 unsigned char TABLE[4] = {1, 2, 4, 8};
 int STEP, N, TIME;
 
 // Subroutine Declarations
 #include <pic18.h>
-#include "keypad.c"
 #include "LCD_PortD.C"
+#include "keypad.c"
         
 // Main Routine
 
