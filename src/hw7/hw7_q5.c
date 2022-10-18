@@ -14,7 +14,6 @@ void init(void){
     ADCON0 = 0x01;
 
     LCD_Init();
-    LCD_Move(0,0); for(int i=0; i < 20; i++) LCD_Write(MSG0[i]);
     Wait_ms(100);
     // Initialize Serial Port to 9600 baud
     TRISC = TRISC | 0xC0;
@@ -72,20 +71,25 @@ void D2A(unsigned int X){
 void main(void){
     init();
 
-    int X, Y;
+    int X;
+    double Y;
 
-    LCD_Move(0,0); LCD_Write("X");
-    LCD_Move(1,0); LCD_Write("Y");
+    LCD_Move(0,0); LCD_Write('X');
+    LCD_Move(1,0); LCD_Write('Y');
 
     while(1){
         while(!RB0){
             X = A2D_Read(0);
-            LCD_Move(0,1); LCD_Out(X, 4, 0);
+            LCD_Move(0,7); LCD_Out(X, 4, 0);
         }
+        LCD_Move(0,1); LCD_Out(X, 4, 0);
 
         Y = pow(X, 0.5);
-        LCD_Move(1,1); LCD_Out(Y, 4, 0);
+        LCD_Move(1,1); LCD_Out(Y*10000, 6, 4);
+        SCI_Out(Y*10000, 6, 4);
+        SCI_CRLF();
 
+        D2A(Y*100); // with * 100, min is 0, max is 3200
         while(RB0);
     }
 }
