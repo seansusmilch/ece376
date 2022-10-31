@@ -19,8 +19,10 @@ unsigned int T2;
 // High-priority service
 void interrupt IntServe(void){
     if (TMR2IF) {
-        RA1 = !RA1;
-        T2 += 1;
+        if(T2 != 0){
+            RC0 = !RC0;
+            T2 -= 1;
+        }
         TMR2IF = 0;
         }
     }
@@ -32,7 +34,7 @@ void main(void){
     unsigned int j;
 
     TRISA = 0;
-    TRISB = 0;
+    TRISB = 0xFF;
     TRISC = 0;
     TRISD = 0;
     TRISE = 0;
@@ -65,10 +67,20 @@ void main(void){
 
 
     while(1){
-    
+        if(RB0){
+            T2 = 5000;
+        }else if(RB1){
+            T2 = 10000;
+        }else if(RB2){
+            T2 = 15000;
+        }else if(RB3){
+            T2 = 20000;
+        }
+        while(PORTB != 0);
+
         LCD_Move(0,  0);  LCD_Out(T2, 5, 3);
-        LCD_Move(1,  0);  LCD_Out(PR2, 5, 0);
-        LCD_Move(1,  8);  LCD_Out(T2CON, 5, 0);
+        // LCD_Move(1,  0);  LCD_Out(PR2, 5, 0);
+        // LCD_Move(1,  8);  LCD_Out(T2CON, 5, 0);
 
         }
    }

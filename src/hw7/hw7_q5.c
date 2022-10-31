@@ -86,6 +86,7 @@ void main(void){
 
         Y = pow(X, 0.5);
         LCD_Move(1,1); LCD_Out(Y*10000, 6, 4);
+        SCI_Out(X, 4, 0);
         SCI_Out(Y*10000, 6, 4);
         SCI_CRLF();
 
